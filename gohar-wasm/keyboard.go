@@ -3,7 +3,6 @@
 package main
 
 import (
-	"strings"
 	"syscall/js"
 
 	"github.com/ArnaudCalmettes/gohar"
@@ -21,11 +20,11 @@ func keyboardWithScalePattern(octaves int, root int, scalePattern int) any {
 	pattern := gohar.ScalePattern(scalePattern)
 	rootPC := gohar.DefaultPitchClass(gohar.Pitch(root))
 	for pc := range pattern.PitchClasses(rootPC, nil) {
-		name := pc.String()
+		name, _ := gohar.NoteName(pc)
 		for pitch := range pc.Pitches(from, to) {
 			i := pitch - from
 			keys[i].isHighlighted = true
-			keys[i].name = strings.ToTitle(name)
+			keys[i].name = name
 		}
 	}
 	return keysToJS(keys)

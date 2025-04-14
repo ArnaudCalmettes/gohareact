@@ -36,12 +36,12 @@ export function ScaleExplorer() {
   }
   return (
     <>
-      <KeyboardRangeSelector onSelectionChanged={setOctaves} />
       <LocaleSelector selected={locale} onSelectionChanged={setLocale} />
       <ScalePatternSelector
         selected={currentPattern}
         onSelectionChanged={setPattern}
       />
+      <KeyboardRangeSelector onSelectionChanged={setOctaves} />
       <SingleNoteKeyboardSelector
         keys={keys}
         selectedPitch={currentPitch}
@@ -57,18 +57,27 @@ function KeyboardRangeSelector({
   onSelectionChanged: (octaves: number) => void;
 }) {
   return (
-    <p>
-      Octaves:
-      <input
-        id="keyboardRangeSelector"
-        type="number"
-        step={1}
-        min={2}
-        max={8}
-        defaultValue={2}
-        onInput={(e) => onSelectionChanged(parseInt(e.currentTarget.value))}
-      />
-    </p>
+    <select
+      id="keyboardRangeSelector"
+      onChange={(e) => onSelectionChanged(parseInt(e.currentTarget.value))}
+      defaultValue={"2"}
+    >
+      <option key={1} value={"1"}>
+        1 octave
+      </option>
+      <option key={2} value={"2"}>
+        2 octaves
+      </option>
+      <option key={3} value={"3"}>
+        3 octaves
+      </option>
+      <option key={4} value={"4"}>
+        4 octaves
+      </option>
+      <option key={5} value={"5"}>
+        5 octaves
+      </option>
+    </select>
   );
 }
 
