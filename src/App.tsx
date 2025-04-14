@@ -1,5 +1,5 @@
 import { useState, useContext, FormEvent } from "react";
-import { Gohar, GoharContext } from "./gohar/gohar.tsx";
+import { Gohar, GoharContext, Key } from "./gohar/gohar.tsx";
 import { GoharLoader } from "./gohar/Loader.tsx";
 import "./App.css";
 import { SingleNoteKeyboardSelector } from "./piano/SingleNote.tsx";
@@ -24,9 +24,15 @@ export function ScaleExplorer() {
     gohar.setLocale(locale);
   }
 
-  let highlightedNotes: number[] = [];
-  if (currentPitch != null && currentPattern) {
-    highlightedNotes = gohar.scaleNotesFromPitch(currentPitch, currentPattern);
+  let keys: Key[] = [];
+  if (currentPitch === null) {
+    keys = gohar.simpleKeyboard(octaves);
+  } else {
+    keys = gohar.keyboardWithScalePattern(
+      octaves,
+      currentPitch || 0,
+      currentPattern
+    );
   }
   return (
     <>
@@ -37,8 +43,7 @@ export function ScaleExplorer() {
         onSelectionChanged={setPattern}
       />
       <SingleNoteKeyboardSelector
-        octaves={octaves}
-        highlightedNotes={highlightedNotes}
+        keys={keys}
         selectedPitch={currentPitch}
         onSelectionChanged={setPitch}
       />

@@ -1,5 +1,5 @@
 import { ReactNode, useState, useEffect } from "react";
-import { Gohar, defaultGoharCtx, GoharContext } from "./gohar.js";
+import { Gohar, defaultGoharCtx, GoharContext } from "./gohar.tsx";
 import "../wasm_exec.js";
 
 export function GoharLoader({ children }: { children: ReactNode }) {

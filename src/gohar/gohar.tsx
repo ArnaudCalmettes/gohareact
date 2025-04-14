@@ -10,6 +10,20 @@ export interface Gohar {
   scalePatternName: (pattern: number) => string;
   scalePatternPitches: (pattern: number) => number[];
   scaleNotesFromPitch: (pitch: number, pattern: number) => number[];
+  simpleKeyboard: (octaves: number) => Key[];
+  keyboardWithScalePattern: (
+    octaves: number,
+    root: number,
+    pattern: number
+  ) => Key[];
+}
+
+export interface Key {
+  pitch: number;
+  name: string;
+  isWhiteKey: boolean;
+  isHighlighted: boolean;
+  isSelected?: boolean;
 }
 
 export const defaultGoharCtx = {
@@ -22,6 +36,8 @@ export const defaultGoharCtx = {
   scalePatternName: () => "loading...",
   scalePatternPitches: () => [],
   scaleNotesFromPitch: () => [],
+  simpleKeyboard: () => [],
+  keyboardWithScalePattern: () => [],
 };
 
 export const GoharContext = createContext<Gohar>(defaultGoharCtx);

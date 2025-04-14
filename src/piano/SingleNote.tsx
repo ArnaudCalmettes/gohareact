@@ -1,47 +1,28 @@
-import { useContext } from "react";
 import { defaultStyle, Style } from "./Style";
 import { Key, KeyColorProfile, KeyShape } from "./Key";
-import { GoharContext, isWhiteKey } from "../gohar/gohar";
+import * as Gohar from "../gohar/gohar";
 
 export function SingleNoteKeyboardSelector({
-  octaves,
+  keys,
   selectedPitch: selected,
-  highlightedNotes: highlighted,
   style,
   onSelectionChanged,
 }: {
-  octaves: number;
+  keys: Gohar.Key[];
   selectedPitch?: number | null;
-  highlightedNotes?: number[];
   style?: Style;
   onSelectionChanged: (selectedPitch: number | null) => void;
 }) {
-  const gohar = useContext(GoharContext);
   if (selected === undefined) {
     selected = null;
   }
   style ||= defaultStyle;
-  const { low, high } = computeAmbitus(octaves);
 
   function selectHandler(pitch: number) {
     if (selected === pitch) {
       onSelectionChanged(null);
     } else {
       onSelectionChanged(pitch);
-    }
-  }
-
-  const selectedPitchIndex = selected != null ? selected - low : -1;
-  const highlight = Array<boolean>(high - low + 1).fill(false);
-  const names = Array<string>(high - low + 1).fill("");
-  if (highlighted) {
-    for (const note of highlighted) {
-      const pitch = gohar.notePitch(note);
-      const i = pitch - low;
-      if (0 <= i && i < highlight.length) {
-        highlight[i] = true;
-        names[i] = capitalize(gohar.noteName(note));
-      }
     }
   }
 
@@ -52,23 +33,21 @@ export function SingleNoteKeyboardSelector({
   const bColorProfile = blackColorProfile(style);
 
   let x = 1;
-  for (let pitch = low; pitch <= high; pitch++) {
-    const isWhite = isWhiteKey(pitch);
-    const idx = pitch - low;
+  for (const k of keys) {
     const key = (
       <Key
-        key={pitch}
+        key={k.pitch}
         x={x}
-        name={names[idx]}
-        shape={isWhite ? whiteShape : blackShape}
-        colorProfile={isWhite ? wColorProfile : bColorProfile}
+        name={capitalize(k.name)}
+        shape={k.isWhiteKey ? whiteShape : blackShape}
+        colorProfile={k.isWhiteKey ? wColorProfile : bColorProfile}
         style={style}
-        highlighted={highlight[idx]}
-        selected={selectedPitchIndex === idx}
-        onSelect={() => selectHandler(pitch)}
+        highlighted={k.isHighlighted}
+        selected={k.pitch === selected}
+        onSelect={() => selectHandler(k.pitch)}
       />
     );
-    if (isWhite) {
+    if (k.isWhiteKey) {
       whiteKeys.push(key);
       x += whiteShape.width;
     } else {
@@ -94,19 +73,6 @@ export function SingleNoteKeyboardSelector({
       <path d={"M0.5 1h" + x} style={style} />
     </svg>
   );
-}
-
-function computeAmbitus(octaves: number): { low: number; high: number } {
-  let low = 0;
-  let high = octaves;
-  while (high - low > 1) {
-    high--;
-    low++;
-  }
-  return {
-    low: low * -12,
-    high: high * 12 - 1,
-  };
 }
 
 function whiteColorProfile(style: Style): KeyColorProfile {
