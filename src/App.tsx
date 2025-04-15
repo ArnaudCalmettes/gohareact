@@ -16,7 +16,7 @@ export default function App() {
 export function ScaleExplorer() {
   const [currentPattern, setPattern] = useState<number>(0b101010110101);
   const [currentPitch, setPitch] = useState<number | null>(null);
-  const [locale, setLocale] = useState<string>("en");
+  const [locale, setLocale] = useState<string>("fr");
   const [octaves, setOctaves] = useState<number>(1);
 
   const gohar = useContext<Gohar>(GoharContext);
@@ -41,7 +41,10 @@ export function ScaleExplorer() {
         selected={currentPattern}
         onSelectionChanged={setPattern}
       />
-      <KeyboardRangeSelector onSelectionChanged={setOctaves} />
+      <KeyboardRangeSelector
+        onSelectionChanged={setOctaves}
+        selected={octaves}
+      />
       <SingleNoteKeyboardSelector
         keys={keys}
         selectedPitch={currentPitch}
@@ -52,15 +55,17 @@ export function ScaleExplorer() {
 }
 
 function KeyboardRangeSelector({
+  selected,
   onSelectionChanged,
 }: {
+  selected: number;
   onSelectionChanged: (octaves: number) => void;
 }) {
   return (
     <select
       id="keyboardRangeSelector"
       onChange={(e) => onSelectionChanged(parseInt(e.currentTarget.value))}
-      defaultValue={"2"}
+      value={selected}
     >
       <option key={1} value={"1"}>
         1 octave
