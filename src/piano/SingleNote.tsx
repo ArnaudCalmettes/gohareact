@@ -8,7 +8,7 @@ export function SingleNoteKeyboardSelector({
   style,
   onSelectionChanged,
 }: {
-  keys: Gohar.Key[];
+  keys: Gohar.KeyboardKey[];
   selectedPitch?: number | null;
   style?: Style;
   onSelectionChanged: (selectedPitch: number | null) => void;
@@ -78,16 +78,18 @@ export function SingleNoteKeyboardSelector({
 function whiteColorProfile(style: Style): KeyColorProfile {
   return {
     baseColor: style.whiteFill || "#fff",
-    selColor: style.selectedFill || "#47a",
-    highColor: style.highlightedFill || "#8bf",
+    selColor: style.whiteSelFill || style.selectedFill || "#47a",
+    highColor: style.whiteHLFill || style.highlightedFill || "#8bf",
+    textColor: style.whiteTextFill || "black",
   };
 }
 
 function blackColorProfile(style: Style): KeyColorProfile {
   return {
     baseColor: style.blackFill || "#000",
-    selColor: style.selectedFill || "#47a",
-    highColor: style.highlightedFill || "#8bf",
+    selColor: style.blackSelFill || style.selectedFill || "#47a",
+    highColor: style.blackHLFill || style.highlightedFill || "#8bf",
+    textColor: style.blackTextFill || "white",
   };
 }
 

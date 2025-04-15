@@ -53,7 +53,7 @@ export function Key({
       <text
         x={shape.x + x + (shape.width - 2) / 2 + 1}
         y={shape.y + shape.height - 3}
-        fill="black"
+        fill={colorProfile.textColor}
         fontSize="6"
         textAnchor="middle"
       >
@@ -86,6 +86,7 @@ export interface KeyColorProfile {
   baseColor: string;
   selColor: string;
   highColor: string;
+  textColor: string;
 }
 
 function computeBaseColor(

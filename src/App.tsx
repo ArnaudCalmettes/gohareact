@@ -1,5 +1,5 @@
 import { useState, useContext, FormEvent } from "react";
-import { Gohar, GoharContext, Key } from "./gohar/gohar.tsx";
+import { Gohar, GoharContext, KeyboardKey } from "./gohar/gohar.tsx";
 import { GoharLoader } from "./gohar/Loader.tsx";
 import "./App.css";
 import { SingleNoteKeyboardSelector } from "./piano/SingleNote.tsx";
@@ -24,7 +24,7 @@ export function ScaleExplorer() {
     gohar.setLocale(locale);
   }
 
-  let keys: Key[] = [];
+  let keys: KeyboardKey[] = [];
   if (currentPitch === null) {
     keys = gohar.simpleKeyboard(octaves);
   } else {
