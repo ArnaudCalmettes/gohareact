@@ -17,7 +17,7 @@ export function ScaleExplorer() {
   const [currentPattern, setPattern] = useState<number>(0b101010110101);
   const [currentPitch, setPitch] = useState<number | null>(null);
   const [locale, setLocale] = useState<string>("fr");
-  const [octaves, setOctaves] = useState<number>(1);
+  const [octaves, setOctaves] = useState<number>(2);
 
   const gohar = useContext<Gohar>(GoharContext);
   if (gohar.isLoaded) {
@@ -62,27 +62,25 @@ function KeyboardRangeSelector({
   onSelectionChanged: (octaves: number) => void;
 }) {
   return (
-    <select
-      id="keyboardRangeSelector"
-      onChange={(e) => onSelectionChanged(parseInt(e.currentTarget.value))}
-      value={selected}
-    >
-      <option key={1} value={"1"}>
-        1 octave
-      </option>
-      <option key={2} value={"2"}>
-        2 octaves
-      </option>
-      <option key={3} value={"3"}>
-        3 octaves
-      </option>
-      <option key={4} value={"4"}>
-        4 octaves
-      </option>
-      <option key={5} value={"5"}>
-        5 octaves
-      </option>
-    </select>
+    <>
+      <button
+        disabled={selected <= 1}
+        onClick={() => {
+          onSelectionChanged(selected - 1);
+        }}
+      >
+        -
+      </button>
+      {"" + selected + " octave" + (selected <= 1 ? "" : "s")}
+      <button
+        disabled={selected >= 8}
+        onClick={() => {
+          onSelectionChanged(selected + 1);
+        }}
+      >
+        +
+      </button>
+    </>
   );
 }
 
