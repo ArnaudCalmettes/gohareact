@@ -60,7 +60,7 @@ export function SingleNoteKeyboardSelector({
       xmlns="http://www.w3.org/2000/svg"
       viewBox={"0 0 " + (x + 0.5) + " 100"}
       width="100%"
-      height="200"
+      height="250"
     >
       <defs>
         <clipPath id="canvas">
@@ -113,6 +113,14 @@ const blackShape: KeyShape = {
 export function BaseSvgDefs({ style }: { style: Style }) {
   return (
     <>
+      <filter id="shadow" color-interpolation-filters="sRGB">
+        <feDropShadow
+          dx="-0.3"
+          dy="0.3"
+          stdDeviation="0.3"
+          flood-opacity="0.5"
+        />
+      </filter>
       <linearGradient id="Hover" x1="0%" x2="0%" y1="0%" y2="100%">
         <stop offset="0%" stopColor={style.selectedFill} />
         <stop offset="100%" stopColor={style.selectedFill} stopOpacity="0" />

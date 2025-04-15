@@ -56,6 +56,7 @@ export function Key({
         fill={colorProfile.textColor}
         fontSize="6"
         textAnchor="middle"
+        filter="url(#shadow)"
       >
         {selected || highlighted ? name : ""}
       </text>
