@@ -17,7 +17,7 @@ export function ScaleExplorer() {
   const [currentPattern, setPattern] = useState<number>(0b101010110101);
   const [currentPitch, setPitch] = useState<number | null>(null);
   const [locale, setLocale] = useState<string>("en");
-  const [octaves, setOctaves] = useState<number>(2);
+  const [octaves, setOctaves] = useState<number>(1);
 
   const gohar = useContext<Gohar>(GoharContext);
   if (gohar.isLoaded) {

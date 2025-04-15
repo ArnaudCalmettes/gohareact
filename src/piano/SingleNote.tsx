@@ -98,8 +98,8 @@ const whiteShape: KeyShape = {
   height: 100,
   x: 0,
   y: -10,
-  rx: 5,
-  ry: 5,
+  rx: 3,
+  ry: 3,
 };
 
 const blackShape: KeyShape = {
