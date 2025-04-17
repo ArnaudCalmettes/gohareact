@@ -51,7 +51,11 @@ export function ScaleExplorer() {
         selectedPitch={currentPitch}
         onSelectionChanged={setPitch}
       />
-      <ScaleNotation rootPitch={currentPitch} scalePattern={currentPattern} />
+      <ScaleNotation
+        rootPitch={currentPitch}
+        scalePattern={currentPattern}
+        locale={locale}
+      />
     </>
   );
 }

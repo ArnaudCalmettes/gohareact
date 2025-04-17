@@ -17,7 +17,7 @@ export interface Gohar {
     root: number,
     pattern: number
   ) => KeyboardKey[];
-  newScaleSchema: (root: number, pattern: number) => ScaleSchema | null;
+  newScaleSchema: (root: number, pattern: number) => ScaleSchema;
 }
 
 export const defaultGoharCtx = {
@@ -33,7 +33,14 @@ export const defaultGoharCtx = {
   scaleToABC: () => "Loading...",
   simpleKeyboard: () => [],
   keyboardWithScalePattern: () => [],
-  newScaleSchema: () => null,
+  newScaleSchema: () => {
+    return {
+      rootName: "Loading...",
+      scaleName: "",
+      ABCNotes: [],
+      NoteNames: [],
+    };
+  },
 };
 
 export const GoharContext = createContext<Gohar>(defaultGoharCtx);
