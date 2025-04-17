@@ -68,7 +68,7 @@ function KeyboardRangeSelector({
   onSelectionChanged: (octaves: number) => void;
 }) {
   return (
-    <>
+    <div id="keyboardSelector">
       <button
         disabled={selected <= 1}
         onClick={() => {
@@ -86,7 +86,7 @@ function KeyboardRangeSelector({
       >
         +
       </button>
-    </>
+    </div>
   );
 }
 

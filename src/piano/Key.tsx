@@ -49,6 +49,7 @@ export function Key({
         ry={shape.ry}
         clipPath="url(#canvas)"
         style={baseStyle}
+        filter="url(#shadow)"
       />
       <text
         x={shape.x + x + (shape.width - 2) / 2 + 1}
