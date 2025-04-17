@@ -4,5 +4,9 @@ github.com/ArnaudCalmettes/gohar v0.0.3 h1:0or5geKDPA7MXMCtFxzRBzeYJFAqgzSWsQB2N
 github.com/ArnaudCalmettes/gohar v0.0.3/go.mod h1:qPUbi+8MCbq4g/wzd6KSgbCDhYLBME4Wfxzh5EeEFxA=
 github.com/ArnaudCalmettes/gohar v0.0.4 h1:8/H2nFiYRnULQAP4lpOl+jR40ew5GLyhWSmSTP2PRPg=
 github.com/ArnaudCalmettes/gohar v0.0.4/go.mod h1:qPUbi+8MCbq4g/wzd6KSgbCDhYLBME4Wfxzh5EeEFxA=
+github.com/ArnaudCalmettes/gohar v0.0.5-forced h1:AaYapaJoTN4QbaZ8CPQ53MWB/NtCE8cMcmJ/SAvP20U=
+github.com/ArnaudCalmettes/gohar v0.0.5-forced/go.mod h1:qPUbi+8MCbq4g/wzd6KSgbCDhYLBME4Wfxzh5EeEFxA=
+github.com/ArnaudCalmettes/gohar v0.0.6 h1:GaKv6SX3t0z/DQEmxQ6C3lrmgdGUI7fZpgvOW3WUCng=
+github.com/ArnaudCalmettes/gohar v0.0.6/go.mod h1:qPUbi+8MCbq4g/wzd6KSgbCDhYLBME4Wfxzh5EeEFxA=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=

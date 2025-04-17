@@ -19,7 +19,7 @@ func keyboardWithScalePattern(octaves int, root int, scalePattern int) any {
 	keys := baseKeys(from, to)
 	pattern := gohar.ScalePattern(scalePattern)
 	rootPC := gohar.DefaultPitchClass(gohar.Pitch(root))
-	for pc := range pattern.PitchClasses(rootPC, nil) {
+	for pc := range pattern.PitchClasses(rootPC) {
 		name, _ := gohar.NoteName(pc)
 		for pitch := range pc.Pitches(from, to) {
 			i := pitch - from

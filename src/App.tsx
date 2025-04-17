@@ -4,6 +4,7 @@ import { GoharLoader } from "./gohar/Loader.tsx";
 import "./App.css";
 import { SingleNoteKeyboardSelector } from "./piano/SingleNote.tsx";
 import { ScalePatternSelector } from "./scale/PatternSelector.tsx";
+import { ScaleNotation } from "./notation.tsx";
 
 export default function App() {
   return (
@@ -50,6 +51,7 @@ export function ScaleExplorer() {
         selectedPitch={currentPitch}
         onSelectionChanged={setPitch}
       />
+      <ScaleNotation rootPitch={currentPitch} scalePattern={currentPattern} />
     </>
   );
 }

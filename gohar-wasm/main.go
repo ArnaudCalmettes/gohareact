@@ -5,7 +5,9 @@ package main
 import (
 	"syscall/js"
 
+	"github.com/ArnaudCalmettes/gohar"
 	goharjs "github.com/ArnaudCalmettes/gohar/lib/js"
+	"github.com/ArnaudCalmettes/gohar/lib/js/convert"
 )
 
 func main() {
@@ -14,6 +16,7 @@ func main() {
 	gohar := js.Global().Get("gohar")
 	gohar.Set("keyboardWithScalePattern", js.FuncOf(KeyboardWithScalePattern))
 	gohar.Set("simpleKeyboard", js.FuncOf(SimpleKeyboard))
+	gohar.Set("newScaleSchema", js.FuncOf(newScaleSchema))
 	<-done
 }
 
@@ -29,4 +32,11 @@ func KeyboardWithScalePattern(_ js.Value, args []js.Value) any {
 		panic("keyboardWithScalePattern: octaves, root and scalePattern are required")
 	}
 	return keyboardWithScalePattern(args[0].Int(), args[1].Int(), args[2].Int())
+}
+
+func newScaleSchema(_ js.Value, args []js.Value) any {
+	if len(args) < 2 {
+		panic("newScaleSchema: root and pattern are required")
+	}
+	return NewScaleSchema(gohar.Pitch(args[0].Int()), convert.ScalePatternFromJS(args[1]))
 }
